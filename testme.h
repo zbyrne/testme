@@ -6,8 +6,7 @@
 #define TESTME_START(name) \
     uint8_t name(void)     \
     { \
-    uint8_t result = 0; \
-    if(1)
+    uint8_t result = 0;
 
 #define TESTME_END return result;}
 

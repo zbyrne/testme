@@ -1,5 +1,5 @@
 clean:
-	-rm *.out
+	-rm -f *.out
 test: clean test_testme
 
 test_testme:

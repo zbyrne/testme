@@ -21,16 +21,18 @@ TESTME_END
 
 TESTME_START(test_run_test)
 {
-    uint8_t res = test_pass();
+    char mesg[200];
+    uint8_t res = test_pass(mesg);
     TESTME_ASSERT_INT_EQ(res, 0);
-    res = test_fail();
+    res = test_fail(mesg);
     TESTME_ASSERT_INT_EQ(res, 1);
 }
 TESTME_END
 
 TESTME_START(test_assert_failure)
 {
-    TESTME_ASSERT_INT_EQ(test_assert(), 1);
+    char mesg[200];
+    TESTME_ASSERT_INT_EQ(test_assert(mesg), 1);
 }
 TESTME_END
 

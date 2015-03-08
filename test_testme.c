@@ -13,6 +13,12 @@ TESTME_START(test_fail)
 }
 TESTME_END
 
+TESTME_START(test_assert)
+{
+    TESTME_ASSERT_INT_EQ(0, 1);
+}
+TESTME_END
+
 TESTME_START(test_run_test)
 {
     uint8_t res = test_pass();
@@ -22,8 +28,15 @@ TESTME_START(test_run_test)
 }
 TESTME_END
 
-int main(void)
+TESTME_START(test_assert_failure)
 {
-    test_run_test();
-    return 0;
+    TESTME_ASSERT_INT_EQ(test_assert(), 1);
 }
+TESTME_END
+
+TESTME_SUITE(testme_suite)
+{
+    TESTME_SUITE_RUN_TEST(test_run_test);
+    TESTME_SUITE_RUN_TEST(test_assert_failure);
+}
+TESTME_SUITE_END

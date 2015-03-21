@@ -20,11 +20,13 @@ struct ErrMsgList{
 #define TESTME_END return result;}
 
 #define TESTME_ASSERT_INT_EQ(a, b) \
+    do { \
     if(a != b) \
     { \
     sprintf(errMsg, "%s Assertion Failed: %d != %d\n", test_name, a, b); \
     return 1; \
-    }
+    } \
+    } while(0)
 
 #define TESTME_SUITE(name) \
     int main(void) \
@@ -38,6 +40,7 @@ struct ErrMsgList{
     printf("Running Test Suite %s.\n", suite_name);
 
 #define TESTME_SUITE_RUN_TEST(name) \
+    do { \
     total_tests++; \
     memset(buffer, 0, 200); \
     result = name(buffer); \
@@ -51,7 +54,8 @@ struct ErrMsgList{
     strncpy(tail->msg, buffer, 200); \
     printf("F"); \
     } \
-    else printf (".");
+    else printf ("."); \
+    } while(0)
 
 #define TESTME_SUITE_END \
     printf("\nPassed: %d Total: %d\n", tests_passed, total_tests); \
